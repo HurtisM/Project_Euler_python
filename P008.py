@@ -2,6 +2,21 @@
 # The four adjacent digits in the 1000-digit number that have the greatest product are 9x9x8x9=5832.
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
 # What is the value of this product?
+import timeit
+
+def product_in_series_brute(number, digits):
+    series = []
+    for i in range(len(number) - (digits - 1)):
+        series.append(number[i:i + digits])
+    max_product = 0
+    for ser in series:
+        product = 1
+        for digit in ser:
+            product *= int(digit)
+            if product > max_product:
+                max_product = product
+    return max_product
+
 def product_in_series(number, digits):
     series = []
     for i in range(len(number) - (digits - 1)):
@@ -14,6 +29,24 @@ def product_in_series(number, digits):
                 product *= int(digit)
                 if product > max_product:
                     max_product = product
+    return max_product
+
+
+def product_in_series_adv(number, digits):
+    read_pos = 0
+    max_product = 0
+    while read_pos + (digits - 1) <= len(number):
+        ser = number[read_pos:read_pos + digits]
+        if "0" not in ser:
+            product = 1
+            for digit in ser:
+                product *= int(digit)
+                if product > max_product:
+                    max_product = product
+            read_pos += 1
+        else:
+            last_zero = ser.rfind("0")
+            read_pos += last_zero + 1
     return max_product
 
 
@@ -40,4 +73,13 @@ if __name__ == "__main__":
               "71636269561882670428252483600823257530420752963450")
     adjacent_digits = 13
 
-    print(f"Largest product of {adjacent_digits} adjacent digits is: {product_in_series(number, adjacent_digits)}")
+    time_brute = timeit.timeit(lambda: product_in_series_brute(number, adjacent_digits), number=10000)
+    time_no_zeroes = timeit.timeit(lambda: product_in_series(number, adjacent_digits), number=10000)
+    time_advanced = timeit.timeit(lambda: product_in_series_adv(number, adjacent_digits), number=10000)
+
+    print(f"Brute force time: {time_brute:.6f} seconds")
+    print(f"No zeroes string time: {time_no_zeroes:.6f} seconds")
+    print(f"Advanced func time: {time_advanced:.6f} seconds")
+
+
+    print(f"Largest product of {adjacent_digits} adjacent digits is: {product_in_series_adv(number, adjacent_digits)}")
