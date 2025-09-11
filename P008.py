@@ -2,7 +2,6 @@
 # The four adjacent digits in the 1000-digit number that have the greatest product are 9x9x8x9=5832.
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product.
 # What is the value of this product?
-
 def product_in_series(number, digits):
     series = []
     for i in range(len(number) - (digits - 1)):
@@ -10,10 +9,11 @@ def product_in_series(number, digits):
     max_product = 0
     for ser in series:
         product = 1
-        for digit in ser:
-            product *= int(digit)
-            if product > max_product:
-                max_product = product
+        if "0" not in ser:
+            for digit in ser:
+                product *= int(digit)
+                if product > max_product:
+                    max_product = product
     return max_product
 
 
