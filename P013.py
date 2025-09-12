@@ -1,3 +1,6 @@
+# Problem 14
+# Work out the first ten digits of the sum of the one-hundred 50-digit numbers in file
+# P013input.txt.
 
 def sum_of(lines):
     sum = 0
