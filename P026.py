@@ -18,8 +18,8 @@ def count_repeat(number):
 def longest_recurring(limit):
     longest = 0
     number = 0
-    for i in range(1,limit+1):
-        if count_repeat(i) >= longest:
+    for i in range(1, limit+1):
+        if count_repeat(i) > longest:
             longest = count_repeat(i)
             number = i
     return number
