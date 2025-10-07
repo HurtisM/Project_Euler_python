@@ -22,6 +22,18 @@ def spiral(dimension):
     return spiral_sum
 
 
+# simplified formula.. no need to count every level of spiral
+def spiral_2(dimension):
+    if dimension % 2 == 0:
+        raise ValueError("Dimension must be an odd number!")
+    return (4*dimension**3 + 3*dimension**2 + 8*dimension - 9) // 6
+
+
 if __name__ == '__main__':
     size = 1001
     print(spiral(size))
+
+    try:
+        print(spiral_2(1001))
+    except ValueError as e:
+        print(e)
