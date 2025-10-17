@@ -10,6 +10,7 @@ def last_ten_digits_self_powers(n=1000):
     # return as zero-padded 10-digit string
     return f"{total:010d}"
 
+
 if __name__ == "__main__":
     print(last_ten_digits_self_powers(1000))
 

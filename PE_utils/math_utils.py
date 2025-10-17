@@ -61,6 +61,18 @@ class MathUtils:
             factors.add(n)
         return factors
 
+    @staticmethod
+    def self_powers(n=1000, digits=10):
+        """
+        Return the last `digits` digits of the series:
+        1^1 + 2^2 + 3^3 + ... + n^n
+        """
+        mod = 10 ** digits
+        total = 0
+        for i in range(1, n + 1):
+            total = (total + pow(i, i, mod)) % mod
+        return total
+
     # ---------- TIMEIT DECORATOR ----------
     @staticmethod
     def timeit(func):
