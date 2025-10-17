@@ -38,3 +38,14 @@ class Primes:
         if n is None or n > self.limit:
             n = self.limit
         return [p for p in self._primes if p <= n]
+
+
+    def primes_in_range(self, start, end):
+        """Return all primes between start and end inclusive."""
+        if end > self.limit:
+            # Extend sieve if needed
+            self.limit = end
+            self._sieve = self._generate_sieve(end)
+            self._primes = [i for i, is_p in enumerate(self._sieve) if is_p]
+        # Filter primes in the desired range
+        return [p for p in self._primes if start <= p <= end]
