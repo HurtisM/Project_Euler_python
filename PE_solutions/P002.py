@@ -18,4 +18,5 @@ def even_fibonacci_numbers(n):
 
 if __name__ == "__main__":
     limit = 4000000
-    print(f"The Fibonacci numbers less than {limit} are: {even_fibonacci_numbers(limit)}")
+    print(f"The Fibonacci numbers less than {limit} "
+          f"are: {even_fibonacci_numbers(limit)}")
